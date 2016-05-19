@@ -7,6 +7,7 @@
 	<version>0.1</version>
 	<name>hello-webapp</name>
 	<url>http://maven.apache.org</url>
+	<!-- test commentary added for GIT -->
 	<build>
 		<pluginManagement>
 			<plugins>
