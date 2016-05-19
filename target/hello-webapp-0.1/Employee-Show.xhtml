@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+<f:metadata>
+	<!-- Pour chopper le paramètre id, JSF appelera le getter ou setters suivant le contexte -->
+	<!--  d'où le # qui n'est pas différé contrairement au $ qui est différé -->
+	<f:viewParam name="id" value="#{ employeeShowBean.id }" />
+	<!-- Depuis JSF 2.2 viewAction, on vas l'utiliser pour etre plus JSF compliant -->
+	<f:viewAction action="#{employeeShowBean.loadEmployee}"/>
+	<!--  ViewAction ne sera necessaire surtout lors de l'action de l'tulisateur -->
+</f:metadata>
+      
+<head>
+  <title><ui:insert name="title">Employee JSF</ui:insert></title>
+</head>
+
+<body>
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+<h1> #{ employeeShowBean.employee.firstName } #{ employeeShowBean.employee.lastName }</h1>
+<p> #{ employeeShowBean.employee.gender } </p>
+
+
+<!--  Cette ligne appelle getemployees -->
+
+</body>
+
+</html>

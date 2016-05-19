@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+ 
+ 
+<f:metadata>
+	<f:viewParam name="pageNumber" value="#{ employeesListBean.pageNumber }" />	
+</f:metadata>     
+<head>
+  <title><ui:insert name="title">Employee JSF</ui:insert></title>
+</head>
+
+<body>
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+
+<h:dataTable id="employeesId"
+             value="#{employeesListBean.employees}"
+             border="10"
+             var="employee">
+    <h:column>
+        <f:facet name="header"> <!-- Pas obligé de mettre une facette, header = entête de la colonne -->
+            id
+        </f:facet>
+        <h:link outcome="Employee-Show" value="#{employee.id}">
+			<f:param name="id" value="#{employee.id}"/>        	
+        </h:link>
+    </h:column>
+    <h:column>
+        <f:facet name="header"> First Name </f:facet>
+        #{ employee.firstName} 
+    </h:column>
+    
+    <h:column>
+        <f:facet name="header"> Last Name </f:facet>
+        #{ employee.lastName} 
+    </h:column>
+    
+    <h:column>
+        <f:facet name="header"> Gender </f:facet>
+        #{ employee.gender } 
+    </h:column>
+</h:dataTable>
+
+<h:link outcome="EmployeeList" value="Pevious" rendered="#{employeesListBean.pageNumber != 1}">
+	<f:param name="pageNumber" value="#{employeesListBean.pageNumber-1}"/>  	
+</h:link>
+ <p>#{ employeesListBean.pageNumber }</p>
+ <h:link outcome="EmployeeList" value="Next" rendered="#{employeesListBean.lastPage} ">
+	<f:param name="pageNumber" value="#{employeesListBean.pageNumber+1}"/>	
+</h:link>
+ 
+<!--  Cette ligne appelle getemployees -->
+
+</body>
+
+</html>
